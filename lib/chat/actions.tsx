@@ -94,7 +94,7 @@ async function submitUserMessage(content: string, type: string) {
 }
 
 export type Message = {
-  role: 'user' | 'assistant' | 'system' | 'data'
+  role: 'user' | 'assistant' | 'system' | 'data' | 'function' | 'tool'
   content: string
   id: string
   name?: string
