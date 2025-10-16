@@ -4,6 +4,7 @@ import { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { setProfile, setPatientType, sampleProfile } from '@/app/api/getDataFromKV'
 
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
     try {
