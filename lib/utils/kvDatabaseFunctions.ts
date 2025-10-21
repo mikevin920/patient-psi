@@ -29,7 +29,7 @@ async function storeDataToKV() {
 
 async function deleteAllProfilesFromKV() {
     try {
-        const dataFilePath = path.join(process.cwd(), 'app/api/data', 'profiles_8.json');
+        const dataFilePath = path.join(process.cwd(), 'python/data', 'profiles.json');
         const jsonData = JSON.parse(await readFile(dataFilePath, 'utf8'));
 
         for (const profile of jsonData) {
@@ -70,7 +70,16 @@ async function assignParticipantSessions(userId: string, sessions: string[]) {
 }
 
 
-storeDataToKV();
+async function refreshProfiles() {
+    console.log('🗑️  Deleting existing profiles...');
+    await deleteAllProfilesFromKV();
+    console.log('\n📤 Uploading new profiles...');
+    await storeDataToKV();
+    console.log('\n✅ Profile refresh complete!');
+}
+
+// Run the refresh (delete old + upload new)
+refreshProfiles();
 
 
 // Collection of kv keys
